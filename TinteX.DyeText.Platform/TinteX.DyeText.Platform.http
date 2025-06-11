@@ -1,0 +1,6 @@
+@TinteX.DyeText.Platform_HostAddress = http://localhost:5260
+
+GET {{TinteX.DyeText.Platform_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
