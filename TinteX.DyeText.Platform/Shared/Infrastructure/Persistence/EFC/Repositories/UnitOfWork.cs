@@ -1,7 +1,7 @@
-using ACME.LearningCenterPlatform.API.Shared.Domain.Repositories;
-using ACME.LearningCenterPlatform.API.Shared.Infrastructure.Persistence.EFC.Configuration;
+using TinteX.DyeText.Platform.Shared.Domain.Repositories;
+using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
-namespace ACME.LearningCenterPlatform.API.Shared.Infrastructure.Persistence.EFC.Repositories;
+namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 /// <summary>
 ///     Unit of work implementation

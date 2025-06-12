@@ -1,6 +1,6 @@
 using Humanizer;
 
-namespace ACME.LearningCenterPlatform.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
+namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 /// <summary>
 ///     String extensions

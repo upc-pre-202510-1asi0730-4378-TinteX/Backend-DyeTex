@@ -1,4 +1,4 @@
-namespace ACME.LearningCenterPlatform.API.Shared.Domain.Repositories;
+namespace TinteX.DyeText.Platform.Shared.Domain.Repositories;
 
 /// <summary>
 ///     Base repository interface for all repositories

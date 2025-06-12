@@ -1,8 +1,8 @@
-using ACME.LearningCenterPlatform.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
+using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
-namespace ACME.LearningCenterPlatform.API.Shared.Infrastructure.Persistence.EFC.Configuration;
+namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
 /// <summary>
 ///     Application database context
