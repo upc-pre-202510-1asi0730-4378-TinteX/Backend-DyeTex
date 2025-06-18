@@ -1,5 +1,8 @@
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
+using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Configuration.Extensions;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Entities;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -7,8 +10,9 @@ namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configur
 /// <summary>
 ///     Application database context
 /// </summary>
-public class AppDbContext(DbContextOptions options) : DbContext(options)
-{
+public class AppDbContext(DbContextOptions options) : DbContext(options) {
+    
+    public DbSet<TaskEntity> Tasks { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         // Add the created and updated interceptor
@@ -20,6 +24,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     {
         base.OnModelCreating(builder);
 
+        builder.ApplyMonitoringDataConfiguration();
+        
+        builder.ApplyConfiguration(new TaskEntityConfiguration());
         
         builder.UseSnakeCaseNamingConvention();
     }
