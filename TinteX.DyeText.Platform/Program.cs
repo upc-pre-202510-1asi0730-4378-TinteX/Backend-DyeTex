@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using TinteX.DyeText.Platform.machine_monitoring.Application.Internal.CommandServices;
-using TinteX.DyeText.Platform.machine_monitoring.Application.Internal.QueryServices;
-using TinteX.DyeText.Platform.machine_monitoring.Domain.Repositories;
-using TinteX.DyeText.Platform.machine_monitoring.Domain.Services;
-using TinteX.DyeText.Platform.machine_monitoring.Infrastructure.Repositories;
+using ServiceDesing.Application.Internal.CommandServices;
+using TinteX.DyeText.Platform.ARM.Application.Internal.CommandServices;
+using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
+using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Services;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -14,21 +19,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
-
 builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
-
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => options.EnableAnnotations());
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Verify Database Connection String
-if (connectionString is null)
-    // Stop the application if the connection string is not set.
-    throw new Exception("Database connection string is not set.");
+if (connectionString == null) throw new InvalidOperationException("Connection string not found");
 
 
 // Add services to the container.
@@ -43,6 +39,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySQL(connectionString)
             .LogTo(Console.WriteLine, LogLevel.Error);
 });
+
     
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -85,6 +82,16 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ITextileMachineRepository, TextileMachineRepository>();
 builder.Services.AddScoped<ITextileMachineCommandService, TextileMachineCommandService>();
 builder.Services.AddScoped<ITextileMachineQueryService, TextileMachineQueryService>();
+
+builder.Services.AddScoped<IMachineInformationRepository, MachineInformationRepository>();
+builder.Services.AddScoped<IMachineInformationCommandService, MachineInformationCommandService>();
+builder.Services.AddScoped<IMachineInformationQueryService, MachineInformationQueryService>();
+
+// ServiceDesign_Planning Bounded Context - Tasks
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskCommandService, TaskCommandService>();
+builder.Services.AddScoped<ITaskQueryService, TaskQueryService>();
+
 
 // Shared Bounded Context
 var app = builder.Build();
