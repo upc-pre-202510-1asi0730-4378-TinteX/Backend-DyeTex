@@ -87,9 +87,6 @@ builder.Services.AddScoped<IMachineInformationRepository, MachineInformationRepo
 builder.Services.AddScoped<IMachineInformationCommandService, MachineInformationCommandService>();
 builder.Services.AddScoped<IMachineInformationQueryService, MachineInformationQueryService>();
 
-builder.Services.AddScoped<ICreditCardRepository, CreditCardRepository>();
-builder.Services.AddScoped<ICreditCardCommandService, CreditCardCommandService>();
-builder.Services.AddScoped<ICreditCardQueryService, CreditCardQueryService >();
 
 // Shared Bounded Context
 var app = builder.Build();
