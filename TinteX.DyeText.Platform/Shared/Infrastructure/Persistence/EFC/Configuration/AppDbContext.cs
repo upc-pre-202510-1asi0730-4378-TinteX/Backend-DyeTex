@@ -24,8 +24,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
 
         builder.ApplyArmDataConfiguration();
         
-        builder.ApplySubscriptionDataConfiguration();
-        
         builder.UseSnakeCaseNamingConvention();
     }
 }
