@@ -25,6 +25,10 @@ public static class ModelBuilderExtensions
         builder.Entity<MachineInformation>().Property(mi => mi.DayProgress).IsRequired().HasMaxLength(30);
         builder.Entity<MachineInformation>().Property(mi => mi.FailureRate).IsRequired().HasMaxLength(30);
         builder.Entity<MachineInformation>().Property(mi => mi.AmountFailure).IsRequired();
+        
+        builder.Entity<DeviceConfiguration>().HasKey(dc => dc.IpAddress);
+        builder.Entity<DeviceConfiguration>().Property(dc => dc.ConnectionProtocol).IsRequired();
+        builder.Entity<DeviceConfiguration>().Property(dc => dc.UpdateFrequency).IsRequired();
 
     }
     

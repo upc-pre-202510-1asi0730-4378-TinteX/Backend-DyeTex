@@ -1,7 +1,5 @@
-using ACME.LearningCenterPlatform.API.Shared.Infrastructure.Interfaces.ASP.Configuration.Extensions;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-
-namespace ACME.LearningCenterPlatform.API.Shared.Infrastructure.Interfaces.ASP.Configuration;
+using TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration.Extensions;
 
 public class KebabCaseRouteNamingConvention : IControllerModelConvention
 {

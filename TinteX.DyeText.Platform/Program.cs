@@ -6,14 +6,9 @@ using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
 using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
 using TinteX.DyeText.Platform.Monitoring.Domain.Services;
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
-using TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
-using TinteX.DyeText.Platform.Subscription.Application.Internal.CommandServices;
-using TinteX.DyeText.Platform.Subscription.Application.Internal.QueryServices;
-using TinteX.DyeText.Platform.Subscription.Domain.Repositories;
-using TinteX.DyeText.Platform.Subscription.Domain.Services;
-using TinteX.DyeText.Platform.Subscription.Infrastructure.Persistence.EFC.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -87,7 +82,9 @@ builder.Services.AddScoped<IMachineInformationRepository, MachineInformationRepo
 builder.Services.AddScoped<IMachineInformationCommandService, MachineInformationCommandService>();
 builder.Services.AddScoped<IMachineInformationQueryService, MachineInformationQueryService>();
 
-
+builder.Services.AddScoped<IDeviceConfigurationRepository, DeviceConfigurationRepository>();
+builder.Services.AddScoped<IDeviceConfigurationCommandService, DeviceConfigurationCommandService>();
+builder.Services.AddScoped<IDeviceConfigurationQueryService, DeviceConfigurationQueryService>();
 // Shared Bounded Context
 var app = builder.Build();
 

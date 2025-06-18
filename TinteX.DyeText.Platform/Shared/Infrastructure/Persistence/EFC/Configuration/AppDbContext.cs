@@ -2,7 +2,6 @@ using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
-using TinteX.DyeText.Platform.Subscription.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -23,6 +22,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         base.OnModelCreating(builder);
 
         builder.ApplyArmDataConfiguration();
+      
         
         builder.UseSnakeCaseNamingConvention();
     }
