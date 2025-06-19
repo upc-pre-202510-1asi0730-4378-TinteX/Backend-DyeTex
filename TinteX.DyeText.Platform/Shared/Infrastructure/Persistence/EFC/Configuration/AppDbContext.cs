@@ -5,14 +5,18 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Entities;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
+using TinteX.DyeText.Platform.Analytics.Domain.Model.Aggregates;
+
 namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
 /// <summary>
 ///     Application database context
 /// </summary>
 public class AppDbContext(DbContextOptions options) : DbContext(options) {
-    
+
     public DbSet<TaskEntity> Tasks { get; set; }
+    public DbSet<MachineFailureCount> MachineFailureCounts { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         // Add the created and updated interceptor
@@ -24,10 +28,22 @@ public class AppDbContext(DbContextOptions options) : DbContext(options) {
     {
         base.OnModelCreating(builder);
 
+        // ARM mappings
         builder.ApplyArmDataConfiguration();
-      
+
+        // ServiceDesign Planning mappings
         builder.ApplyConfiguration(new TaskEntityConfiguration());
-        
+
+       // Analytics mappings
+        builder.Entity<MachineFailureCount>(entity =>
+        {
+            entity.ToTable("machine_failure_counts");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.MachineId).IsRequired().HasMaxLength(50);
+            entity.Property(e => e.MachineName).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Count).IsRequired();
+        });
+
         builder.UseSnakeCaseNamingConvention();
     }
 }
