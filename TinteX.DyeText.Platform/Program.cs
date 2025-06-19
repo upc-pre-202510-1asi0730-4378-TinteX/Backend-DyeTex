@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ServiceDesing.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
 using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
 using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Services;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
@@ -85,6 +90,13 @@ builder.Services.AddScoped<IMachineInformationQueryService, MachineInformationQu
 builder.Services.AddScoped<IDeviceConfigurationRepository, DeviceConfigurationRepository>();
 builder.Services.AddScoped<IDeviceConfigurationCommandService, DeviceConfigurationCommandService>();
 builder.Services.AddScoped<IDeviceConfigurationQueryService, DeviceConfigurationQueryService>();
+
+// ServiceDesign_Planning Bounded Context - Tasks
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskCommandService, TaskCommandService>();
+builder.Services.AddScoped<ITaskQueryService, TaskQueryService>();
+
+
 // Shared Bounded Context
 var app = builder.Build();
 
