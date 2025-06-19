@@ -24,8 +24,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options) {
     {
         base.OnModelCreating(builder);
 
-        builder.ApplyMonitoringDataConfiguration();
-        
+        builder.ApplyArmDataConfiguration();
+      
         builder.ApplyConfiguration(new TaskEntityConfiguration());
         
         builder.UseSnakeCaseNamingConvention();

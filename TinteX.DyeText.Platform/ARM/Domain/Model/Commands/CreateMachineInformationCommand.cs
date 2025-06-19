@@ -1,0 +1,8 @@
+namespace TinteX.DyeText.Platform.ARM.Domain.Model.Commands;
+
+public record CreateMachineInformationCommand(
+    string TimeSpent,
+    string DayProgress,
+    string FailureRate,
+    double AmountFailure
+    );

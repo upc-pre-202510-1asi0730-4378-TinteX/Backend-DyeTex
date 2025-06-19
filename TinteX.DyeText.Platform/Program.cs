@@ -11,9 +11,9 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Services;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
-using TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,6 +86,10 @@ builder.Services.AddScoped<ITextileMachineQueryService, TextileMachineQueryServi
 builder.Services.AddScoped<IMachineInformationRepository, MachineInformationRepository>();
 builder.Services.AddScoped<IMachineInformationCommandService, MachineInformationCommandService>();
 builder.Services.AddScoped<IMachineInformationQueryService, MachineInformationQueryService>();
+
+builder.Services.AddScoped<IDeviceConfigurationRepository, DeviceConfigurationRepository>();
+builder.Services.AddScoped<IDeviceConfigurationCommandService, DeviceConfigurationCommandService>();
+builder.Services.AddScoped<IDeviceConfigurationQueryService, DeviceConfigurationQueryService>();
 
 // ServiceDesign_Planning Bounded Context - Tasks
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
