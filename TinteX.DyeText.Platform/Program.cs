@@ -1,23 +1,35 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+
+// ARM
 using ServiceDesing.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
+
+// ServiceDesign_Planning
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Services;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
+
+// Shared
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration;
+
+// Analytics
 using TinteX.DyeText.Platform.Analytics.Domain.Repositories;
 using TinteX.DyeText.Platform.Analytics.Domain.Services;
 using TinteX.DyeText.Platform.Analytics.Infrastructure.Repositories;
 using TinteX.DyeText.Platform.Analytics.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices;
+
+// Monitoring
 using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
 using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,6 +101,10 @@ builder.Services.AddScoped<ITaskQueryService, TaskQueryService>();
 builder.Services.AddScoped<IMachineFailureCountRepository, MachineFailureCountRepository>();
 builder.Services.AddScoped<IFailureCountCommandService, FailuresCountCommandService>();
 builder.Services.AddScoped<IMachinesFailureCountQueryService, FailuresCountQueryService>();
+
+builder.Services.AddScoped<IMachineFailureRateRepository, MachineFailureRateRepository>();
+builder.Services.AddScoped<IMachineFailureRateQueryService, FailureRateQueryService>();
+builder.Services.AddScoped<IFailureRateCommandService, FailureRateCommandService>();
 
 var app = builder.Build();
 
