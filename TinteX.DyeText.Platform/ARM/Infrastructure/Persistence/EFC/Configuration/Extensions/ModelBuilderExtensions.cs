@@ -17,7 +17,7 @@ public static class ModelBuilderExtensions
         builder.Entity<TextileMachine>().Property(tm => tm.SerialNumber).IsRequired().HasMaxLength(50);
         builder.Entity<TextileMachine>().Property(tm => tm.Floor).IsRequired();
         builder.Entity<TextileMachine>().Property(tm => tm.Zone).IsRequired();
-        builder.Entity<TextileMachine>().Property(tm => tm.DateInstallation).IsRequired();
+        builder.Entity<TextileMachine>().Property(tm => tm.DateInstallation).HasColumnType("datetime").IsRequired();
         
         builder.Entity<MachineInformation>().HasKey(mi => mi.Id);
         builder.Entity<MachineInformation>().Property(mi => mi.Id).IsRequired().ValueGeneratedOnAdd();
