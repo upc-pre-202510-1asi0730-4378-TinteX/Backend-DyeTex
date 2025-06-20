@@ -16,6 +16,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<TaskEntity> Tasks { get; set; }
     public DbSet<MachineFailureCount> MachineFailureCounts { get; set; }
     public DbSet<MachineFailureRate> MachineFailureRates { get; set; }
+    public DbSet<TaskDueStatusCount> TaskDueStatusCounts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
@@ -53,6 +54,13 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             entity.Property(e => e.MachineId).IsRequired().HasMaxLength(50);
             entity.Property(e => e.MachineName).IsRequired().HasMaxLength(100);
             entity.Property(e => e.Rate).IsRequired();
+        });
+        builder.Entity<TaskDueStatusCount>(entity =>
+        {
+            entity.ToTable("task_due_status_counts");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.OverdueCount).IsRequired();
+            entity.Property(e => e.UpcomingCount).IsRequired();
         });
 
         builder.UseSnakeCaseNamingConvention();
