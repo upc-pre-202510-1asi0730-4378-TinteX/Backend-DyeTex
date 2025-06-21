@@ -114,7 +114,6 @@ builder.Services.AddScoped<IFailureRateCommandService, FailureRateCommandService
 builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
 builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();
 
-
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
 builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();

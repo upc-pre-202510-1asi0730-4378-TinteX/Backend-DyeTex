@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TinteX.DyeText.Platform.Analytics.Domain.Model.Aggregates;
 using TinteX.DyeText.Platform.Analytics.Domain.Model.Commands;
 using TinteX.DyeText.Platform.Analytics.Domain.Services;
@@ -6,7 +7,8 @@ using TinteX.DyeText.Platform.Analytics.Domain.Services;
 namespace TinteX.DyeText.Platform.Analytics.Interfaces
 {
     [ApiController]
-    [Route("api/machine-failure-rate")]
+    [Route("api/v1/[controller]")]
+    [SwaggerTag("Available Textile Machine Failure Rate Endpoints")]
     public class MachineFailureRateController : ControllerBase
     {
         private readonly IMachineFailureRateQueryService _queryService;
@@ -22,6 +24,10 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces
 
         // POST /api/machine-failure-rate/refresh
         [HttpPost("refresh")]
+        [SwaggerOperation(
+            Summary = "Refresh TextileMachine by Id",
+            Description = "Refresh a TextileMachine by its unique identifier.",
+            OperationId = "RefreshTextileMachineById")]
         public async Task<IActionResult> RefreshRates()
         {
             await _commandService.Handle(new UpdateMachineFailureRatesCommand());
@@ -30,6 +36,10 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces
 
         // GET /api/machine-failure-rate
         [HttpGet]
+        [SwaggerOperation(
+            Summary = "Get All TextileMachine",
+            Description = "Get all the TextileMachine",
+            OperationId = "GetAllTextileMachine")]
         public async Task<ActionResult<IEnumerable<MachineFailureRate>>> GetAll()
         {
             var list = await _queryService.ListAsync();
@@ -38,6 +48,10 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces
 
         // GET /api/machine-failure-rate/{machineId}
         [HttpGet("{machineId:guid}")]
+        [SwaggerOperation(
+            Summary = "Get TextileMachine by Id",
+            Description = "Get a TextileMachine by its unique identifier.",
+            OperationId = "GetTextileMachineById")]
         public async Task<ActionResult<MachineFailureRate>> GetByMachineId(Guid machineId)
         {
             var dto = await _queryService.FindByMachineIdAsync(machineId);

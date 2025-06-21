@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TinteX.DyeText.Platform.Analytics.Domain.Services;
 using TinteX.DyeText.Platform.Analytics.Domain.Model.Commands;
 using TinteX.DyeText.Platform.Analytics.Domain.Repositories;
@@ -6,7 +7,8 @@ using TinteX.DyeText.Platform.Analytics.Domain.Repositories;
 namespace TinteX.DyeText.Platform.Analytics.Interfaces.REST
 {
     [ApiController]
-    [Route("api/task-due-status")]
+    [Route("api/v1/[controller]")]
+    [SwaggerTag("Available Textile Machine Tasks Status Endpoints")]
     public class TaskDueStatusController : ControllerBase
     {
         private readonly ITaskDueStatusCountCommandService _commandService;
@@ -21,6 +23,10 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces.REST
         }
 
         [HttpPost("refresh")]
+        [SwaggerOperation(
+            Summary = "Refresh TextileMachine by Id",
+            Description = "Refresh a TextileMachine by its unique identifier.",
+            OperationId = "RefreshTextileMachineById")]
         public async Task<IActionResult> Refresh()
         {
             await _commandService.Handle(new UpdateTaskDueStatusCountCommand());
@@ -28,6 +34,10 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces.REST
         }
 
         [HttpGet]
+        [SwaggerOperation(
+            Summary = "Get All TextileMachine",
+            Description = "Get all the TextileMachine",
+            OperationId = "GetAllTextileMachine")]
         public async Task<IActionResult> Get()
         {
             var data = await _repository.GetAsync();
