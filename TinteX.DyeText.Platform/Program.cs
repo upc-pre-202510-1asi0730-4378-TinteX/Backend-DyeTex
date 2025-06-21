@@ -29,6 +29,11 @@ using TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices;
 // Monitoring
 using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
 using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+using TinteX.DyeText.Platform.Profiles.Application.Internal.CommandServices;
+using TinteX.DyeText.Platform.Profiles.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.Profiles.Domain.Repositories;
+using TinteX.DyeText.Platform.Profiles.Domain.Services;
+using TinteX.DyeText.Platform.Profiles.Infrastructure.Persistence.EFC.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -108,6 +113,12 @@ builder.Services.AddScoped<IFailureRateCommandService, FailureRateCommandService
 
 builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
 builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();
+
+
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
+builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
+
 
 var app = builder.Build();
 

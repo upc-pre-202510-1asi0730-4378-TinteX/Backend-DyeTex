@@ -5,6 +5,7 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Entities;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using TinteX.DyeText.Platform.Analytics.Domain.Model.Aggregates;
+using TinteX.DyeText.Platform.Profiles.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -35,7 +36,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         // ServiceDesign Planning mappings
         builder.ApplyConfiguration(new TaskEntityConfiguration());
 
-     
+        builder.ApplyProfilesConfiguration();
 
         // Analytics mappings
         builder.Entity<MachineFailureCount>(entity =>
