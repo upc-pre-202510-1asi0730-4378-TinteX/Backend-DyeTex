@@ -7,7 +7,7 @@ using TinteX.DyeText.Platform.Analytics.Domain.Repositories;
 namespace TinteX.DyeText.Platform.Analytics.Interfaces
 {
     [ApiController]
-    [Route("api/machine-failure-count")]
+    [Route("api/machine-failure-counts")]
     public class MachineAnalyticsController : ControllerBase
     {
         private readonly IMachinesFailureCountQueryService _queryService;

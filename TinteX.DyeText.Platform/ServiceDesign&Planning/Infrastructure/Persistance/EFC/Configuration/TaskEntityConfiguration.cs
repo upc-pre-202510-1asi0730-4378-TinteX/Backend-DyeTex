@@ -9,6 +9,6 @@ public class TaskEntityConfiguration : IEntityTypeConfiguration<TaskEntity> {
         builder.ToTable("tasks"); 
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Name).IsRequired().HasMaxLength(255);
-        builder.Property(t => t.DueDate).HasColumnType("datetime").IsRequired();
+        builder.Property(t => t.DueDate).IsRequired().HasMaxLength(10);
     }
 }

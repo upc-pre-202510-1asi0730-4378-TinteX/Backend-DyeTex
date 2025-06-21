@@ -9,5 +9,5 @@ public record UpdateTextileMachineResource(
     string SerialNumber,
     string Floor,
     string Zone,
-    DateTime DateInstallation
+    string DateInstallation
     );

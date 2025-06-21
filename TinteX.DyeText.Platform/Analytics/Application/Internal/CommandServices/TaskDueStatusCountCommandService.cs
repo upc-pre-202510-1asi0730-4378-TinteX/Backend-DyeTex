@@ -22,8 +22,8 @@ namespace TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices
             var tasks = await _taskRepo.GetAllAsync();
             var now = DateTime.UtcNow;
 
-            int overdue = tasks.Count(t => t.DueDate < now);
-            int upcoming = tasks.Count(t => t.DueDate >= now);
+            int overdue = tasks.Count(t => DateOnly.TryParse(t.DueDate, out var dueDate) && dueDate < DateOnly.FromDateTime(now));
+            int upcoming = tasks.Count(t => DateOnly.TryParse(t.DueDate, out var dueDate) && dueDate < DateOnly.FromDateTime(now));
 
             var agg = new TaskDueStatusCount
             {

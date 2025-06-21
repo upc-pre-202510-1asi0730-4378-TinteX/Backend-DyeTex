@@ -7,5 +7,6 @@ public record CreateTextileMachineCommand(
     string Status,
     string SerialNumber,
     string Floor,
-    string Zone
+    string Zone,
+    string DateInstallation
     );

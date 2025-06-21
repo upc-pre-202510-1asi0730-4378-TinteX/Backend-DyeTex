@@ -14,7 +14,7 @@ public class TextileMachine
         SerialNumber = string.Empty;
         Floor = string.Empty;
         Zone = string.Empty;
-        DateInstallation = new DateTime();
+        DateInstallation = string.Empty;
     }
 
     public TextileMachine(CreateTextileMachineCommand command)
@@ -26,6 +26,7 @@ public class TextileMachine
         SerialNumber = command.SerialNumber;
         Floor = command.Floor;
         Zone = command.Zone;
+        DateInstallation = command.DateInstallation;
     }
     
     public TextileMachine Update(UpdateTextileMachineCommand command)
@@ -50,5 +51,5 @@ public class TextileMachine
     public string SerialNumber { get; private set; }
     public string Floor { get; private set; }
     public string Zone { get; private set; }
-    public DateTime DateInstallation { get; private set; }
+    public string DateInstallation { get; private set; }
 }

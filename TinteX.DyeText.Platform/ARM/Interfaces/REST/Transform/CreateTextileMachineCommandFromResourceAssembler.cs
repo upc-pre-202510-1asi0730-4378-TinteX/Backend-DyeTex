@@ -14,7 +14,8 @@ public static class CreateTextileMachineCommandFromResourceAssembler
             resource.Status,
             resource.SerialNumber,
             resource.Floor,
-            resource.Zone
+            resource.Zone,
+            resource.DateInstallation
         );
     }
 }
