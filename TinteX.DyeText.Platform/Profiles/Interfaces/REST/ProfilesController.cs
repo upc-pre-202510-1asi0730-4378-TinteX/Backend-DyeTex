@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using TinteX.DyeText.Platform.Profiles.Domain.Model.Queries;
+using TinteX.DyeText.Platform.Profiles.Domain.Model.Commands;
 using TinteX.DyeText.Platform.Profiles.Domain.Services;
 using TinteX.DyeText.Platform.Profiles.Interfaces.REST.Resources;
 using TinteX.DyeText.Platform.Profiles.Interfaces.REST.Transform;
@@ -53,5 +54,24 @@ public class ProfilesController(
         var profiles = await profileQueryService.Handle(getAllProfilesQuery);
         var profileResources = profiles.Select(ProfileResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(profileResources);
+    }
+
+    [HttpPut("{profileId:int}")]
+    [SwaggerOperation("Update Profile", "Update an existing profile.", OperationId = "UpdateProfile")]
+    [SwaggerResponse(200, "The profile was updated.", typeof(ProfileResource))]
+    [SwaggerResponse(400, "Invalid data.")]
+    [SwaggerResponse(404, "Profile not found.")]
+    public async Task<IActionResult> UpdateProfile(int profileId, UpdateProfileResource resource)
+    {
+        if (profileId != resource.Id)
+            return BadRequest("Profile ID mismatch.");
+
+        var updateCommand = UpdateProfileCommandFromResourceAssembler.ToCommand(resource);
+        var updated = await profileCommandService.Handle(updateCommand);
+        if (updated is null)
+            return NotFound();
+
+        var output = ProfileResourceFromEntityAssembler.ToResourceFromEntity(updated);
+        return Ok(output);
     }
 }

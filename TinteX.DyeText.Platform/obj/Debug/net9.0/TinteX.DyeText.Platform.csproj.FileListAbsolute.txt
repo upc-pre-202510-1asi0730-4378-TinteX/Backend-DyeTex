@@ -379,3 +379,4 @@ C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\
 C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\net9.0\TinteX.DyeText.Platform.pdb
 C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\net9.0\TinteX.DyeText.Platform.genruntimeconfig.cache
 C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\net9.0\ref\TinteX.DyeText.Platform.dll
+C:\Users\JHector\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\appsettings.Production.json

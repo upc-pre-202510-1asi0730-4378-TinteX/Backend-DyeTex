@@ -29,7 +29,35 @@ public class ProfileCommandService(
             await profileRepository.AddAsync(profile);
             await unitOfWork.CompleteAsync();
             return profile;
-        } catch (Exception e)
+        }
+        catch (Exception e)
+        {
+            // Log error
+            return null;
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task<Profile?> Handle(UpdateProfileCommand command)
+    {
+        var profile = await profileRepository.FindByIdAsync(command.Id);
+        if (profile is null) return null;
+
+        profile.Update(
+            command.FirstName,
+            command.LastName,
+            command.Email,
+            command.Phone,
+            command.MembershipActive,
+            command.Theme
+        );
+
+        try
+        {
+            await unitOfWork.CompleteAsync();
+            return profile;
+        }
+        catch (Exception e)
         {
             // Log error
             return null;
