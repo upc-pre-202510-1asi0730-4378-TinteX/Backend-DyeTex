@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -16,7 +19,7 @@ namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST;
 /// <param name="taskQueryService">Service to query task data</param>
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/design&planning/textile-machines/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Endpoints for managing scheduled tasks")]
 public class TasksController(

@@ -1,12 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Entities;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
+using TaskEntity = TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Aggregates.Task;
 
-namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
+namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Repositories;
 
-public class TaskRepository: BaseRepository<TaskEntity>, ITaskRepository
+public class TaskRepository : BaseRepository<TaskEntity>, ITaskRepository
 {
     public TaskRepository(AppDbContext context) : base(context) { }
 
@@ -20,7 +23,7 @@ public class TaskRepository: BaseRepository<TaskEntity>, ITaskRepository
         return await Context.Set<TaskEntity>().FindAsync(id);
     }
 
-    public new async Task AddAsync(TaskEntity task)
+    public async Task AddAsync(TaskEntity task)
     {
         await Context.Set<TaskEntity>().AddAsync(task);
         await Context.SaveChangesAsync();

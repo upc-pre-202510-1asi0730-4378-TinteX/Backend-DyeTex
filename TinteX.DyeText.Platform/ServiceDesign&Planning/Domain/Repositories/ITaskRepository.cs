@@ -1,4 +1,7 @@
-using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using TaskEntity = TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Aggregates.Task;
 
 namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 
