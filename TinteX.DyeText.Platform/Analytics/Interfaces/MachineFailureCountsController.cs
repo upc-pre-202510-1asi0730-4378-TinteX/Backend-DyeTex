@@ -8,7 +8,7 @@ using TinteX.DyeText.Platform.Analytics.Domain.Repositories;
 namespace TinteX.DyeText.Platform.Analytics.Interfaces
 {
     [ApiController]
-    [Route("api/v1/Machine-Failure-Counts")]
+    [Route("api/v1/Dashboard&Analytics/Machine")]
     [SwaggerTag("Available Textile Machine Failure Counts Endpoints")]
     public class MachineFailureCountsController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces
         }
 
         // POST /api/machine-failure-count/refresh
-        [HttpPost("refresh")]
+        [HttpPost("Failure-Counts")]
         [SwaggerOperation(
             Summary = "Refresh TextileMachine by Id",
             Description = "Refresh a TextileMachine by its unique identifier.",
@@ -36,7 +36,7 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces
         }
 
         // GET /api/machine-failure-count
-        [HttpGet]
+        [HttpGet("Failure-Counts")]
         [SwaggerOperation(
             Summary = "Get All TextileMachine",
             Description = "Get all the TextileMachine",
@@ -48,7 +48,7 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces
         }
 
         // GET /api/machine-failure-count/{machineId}
-        [HttpGet("{machineId:guid}")]
+        [HttpGet("{machineId:guid}/Failure-Counts")]
         [SwaggerOperation(
             Summary = "Get TextileMachine by Id",
             Description = "Get a TextileMachine by its unique identifier.",
