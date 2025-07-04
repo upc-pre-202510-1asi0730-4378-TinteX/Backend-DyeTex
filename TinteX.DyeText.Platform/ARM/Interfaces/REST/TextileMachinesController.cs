@@ -10,7 +10,7 @@ namespace TinteX.DyeText.Platform.ARM.Interfaces.REST;
 
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/assets&resourcemanagement/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Textile Machine Endpoints")]
 public class TextileMachinesController(

@@ -9,7 +9,7 @@ using TinteX.DyeText.Platform.Monitoring.Domain.Services;
 namespace TinteX.DyeText.Platform.ARM.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/assets&resourcemanagement/textile-machines/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Machine Information Endpoints")]
 public class MachineInformationsController(
