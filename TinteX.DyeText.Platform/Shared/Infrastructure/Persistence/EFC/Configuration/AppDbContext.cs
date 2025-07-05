@@ -14,7 +14,7 @@ namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configur
 /// </summary>
 public class AppDbContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<TaskEntity> Tasks { get; set; }
+    public DbSet<TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Aggregates.Task> Tasks { get; set; }
     public DbSet<MachineFailureCount> MachineFailureCounts { get; set; }
     public DbSet<MachineFailureRate> MachineFailureRates { get; set; }
     public DbSet<TaskDueStatusCount> TaskDueStatusCounts { get; set; }
