@@ -135,3 +135,4 @@ app.UseCors("AllowAllPolicy");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+NO DEJES TU GIT ABIRTO CUMPA. MI AMIGO CASI TE BORRA LA ORGANIZATION Y ANGEL NO PERDONA
