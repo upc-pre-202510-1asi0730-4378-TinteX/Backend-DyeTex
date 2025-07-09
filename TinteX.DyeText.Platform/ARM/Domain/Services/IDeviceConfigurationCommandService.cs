@@ -1,7 +1,7 @@
 ﻿using TinteX.DyeText.Platform.ARM.Domain.Model.Commands;
 using TinteX.DyeText.Platform.ARM.Domain.Model.Entities;
 
-namespace TinteX.DyeText.Platform.Monitoring.Domain.Services;
+namespace TinteX.DyeText.Platform.ARM.Domain.Services;
 
 public interface IDeviceConfigurationCommandService
 {

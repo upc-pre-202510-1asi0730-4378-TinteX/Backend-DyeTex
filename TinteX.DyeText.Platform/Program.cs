@@ -26,15 +26,21 @@ using TinteX.DyeText.Platform.Analytics.Infrastructure.Repositories;
 using TinteX.DyeText.Platform.Analytics.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices;
 
-// Monitoring
-using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
-using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+// ARM
+using TinteX.DyeText.Platform.ARM.Domain.Repositories;
+using TinteX.DyeText.Platform.ARM.Domain.Services;
 using TinteX.DyeText.Platform.Profiles.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.Profiles.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Profiles.Domain.Repositories;
 using TinteX.DyeText.Platform.Profiles.Domain.Services;
 using TinteX.DyeText.Platform.Profiles.Infrastructure.Persistence.EFC.Repositories;
 
+// Monitoring
+using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
+using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+using TinteX.DyeText.Platform.Monitoring.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.Monitoring.Application.Internal.CommandServices;
+using TinteX.DyeText.Platform.Monitoring.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -118,6 +124,10 @@ builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
 builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
 
+// Monitoring Bounded Context
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
+builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
 
 var app = builder.Build();
 

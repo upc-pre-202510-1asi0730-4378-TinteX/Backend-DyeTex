@@ -5,6 +5,7 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Entities;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using TinteX.DyeText.Platform.Analytics.Domain.Model.Aggregates;
+using TinteX.DyeText.Platform.Monitoring.Domain.Model.Aggregate;
 using TinteX.DyeText.Platform.Profiles.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -18,6 +19,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<MachineFailureCount> MachineFailureCounts { get; set; }
     public DbSet<MachineFailureRate> MachineFailureRates { get; set; }
     public DbSet<TaskDueStatusCount> TaskDueStatusCounts { get; set; }
+    public DbSet<Notifications> Notifications { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
