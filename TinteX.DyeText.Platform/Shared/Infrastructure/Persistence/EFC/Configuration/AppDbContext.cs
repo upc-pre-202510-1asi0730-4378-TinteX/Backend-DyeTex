@@ -16,6 +16,7 @@ using TinteX.DyeText.Platform.Analytics.Domain.Model.Aggregates;
 
 // Monitoring
 using TinteX.DyeText.Platform.Monitoring.Domain.Model.Aggregate;
+using TinteX.DyeText.Platform.Profiles.Domain.Model.Aggregates;
 
 // Profiles
 using TinteX.DyeText.Platform.Profiles.Infrastructure.Persistence.EFC.Configuration.Extensions;
@@ -33,7 +34,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<MachineFailureRate> MachineFailureRates { get; set; }
     public DbSet<TaskDueStatusCount> TaskDueStatusCounts { get; set; }
     public DbSet<Notifications> Notifications { get; set; }
-
+    public DbSet<AssignUser> AssignUsers { get; set; }
     public DbSet<PlanningTask> PlanningTasks { get; set; }
     public DbSet<Maintenance> Maintenances { get; set; }
     public DbSet<RequestInvoice> RequestInvoices { get; set; }
