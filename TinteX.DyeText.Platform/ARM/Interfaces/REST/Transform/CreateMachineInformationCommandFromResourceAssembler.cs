@@ -11,7 +11,12 @@ public static class CreateMachineInformationCommandFromResourceAssembler
             resource.TimeSpent,
             resource.DayProgress,
             resource.FailureRate,
-            resource.AmountFailure
+            resource.AmountFailure,
+            resource.UserId,
+            resource.Temperature,
+            resource.Vibration,
+            resource.Energy,
+            resource.Speed
         );
     }
 }

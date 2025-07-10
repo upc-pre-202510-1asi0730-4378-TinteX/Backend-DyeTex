@@ -4,5 +4,10 @@ public record CreateMachineInformationCommand(
     string TimeSpent,
     string DayProgress,
     string FailureRate,
-    double AmountFailure
+    double AmountFailure,
+    string UserId,
+    double Temperature,
+    double Vibration,
+    double Energy,
+    double Speed
     );

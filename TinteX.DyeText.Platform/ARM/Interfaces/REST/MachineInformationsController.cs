@@ -9,7 +9,7 @@ using TinteX.DyeText.Platform.ARM.Domain.Services;
 namespace TinteX.DyeText.Platform.ARM.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/assets/textile-machines/[controller]")]
+[Route("api/v1/assets/textile-machine/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Machine Information Endpoints")]
 public class MachineInformationsController(
@@ -33,6 +33,21 @@ public class MachineInformationsController(
             return NotFound($"Machine information with ID {id} not found.");
         var resource = MachineInformationResourceFromEntityAssembler.ToResourceFromEntity(result);
         return Ok(resource);
+    }
+    
+    
+    [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Machine informations",
+        Description = "Returns a list of all machine informations in the system.",
+        OperationId = "GetAllMachineInformations")]
+    [SwaggerResponse(StatusCodes.Status200OK, "List of machine informations", typeof(IEnumerable<MachineInformationResource>))]
+    public async Task<IActionResult> GetAllMachineInformation()
+    {
+        var getAllMachineInformationQuery = new GetAllMachineInformationsQuery();
+        var machineInformations = await machineInformationQueryService.Handle(getAllMachineInformationQuery);
+        var resources = machineInformations.Select(MachineInformationResourceFromEntityAssembler.ToResourceFromEntity).ToList();
+        return Ok(resources);
     }
     
     

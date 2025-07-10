@@ -12,4 +12,9 @@ public class MachineInformationQueryService(IMachineInformationRepository machin
     {
         return await machineInformationRepository.FindByIdAsync(query.Id);
     }
+
+    public async Task<IEnumerable<MachineInformation>> Handle(GetAllMachineInformationsQuery query)
+    {
+        return await machineInformationRepository.ListAsync();
+    }
 }
