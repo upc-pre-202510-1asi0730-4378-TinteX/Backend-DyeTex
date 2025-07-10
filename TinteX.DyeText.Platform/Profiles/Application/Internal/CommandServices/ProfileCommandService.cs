@@ -32,7 +32,7 @@ using TinteX.DyeText.Platform.Profiles.Domain.Model.Aggregates;
                 }
                 catch (Exception e)
                 {
-                    // Aquí deberías registrar el error para depuración
+                    Console.WriteLine(e);
                     return null;
                 }
             }
@@ -59,7 +59,7 @@ using TinteX.DyeText.Platform.Profiles.Domain.Model.Aggregates;
                 }
                 catch (Exception e)
                 {
-                    // Aquí deberías registrar el error para depuración
+                    Console.WriteLine(e);
                     return null;
                 }
             }
