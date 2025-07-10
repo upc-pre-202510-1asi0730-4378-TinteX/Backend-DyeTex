@@ -2,16 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 // ARM
-using ServiceDesing.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
 
 // ServiceDesign_Planning
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Services;
-using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Repositories;
 
 // Shared
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
@@ -41,6 +41,11 @@ using TinteX.DyeText.Platform.Monitoring.Domain.Services;
 using TinteX.DyeText.Platform.Monitoring.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Monitoring.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.Monitoring.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.SAP.Application.Internal.CommanServices;
+using TinteX.DyeText.Platform.SAP.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.SAP.Domain.Repository;
+using TinteX.DyeText.Platform.SAP.Domain.Services;
+using TinteX.DyeText.Platform.SAP.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -103,10 +108,18 @@ builder.Services.AddScoped<IDeviceConfigurationRepository, DeviceConfigurationRe
 builder.Services.AddScoped<IDeviceConfigurationCommandService, DeviceConfigurationCommandService>();
 builder.Services.AddScoped<IDeviceConfigurationQueryService, DeviceConfigurationQueryService>();
 
-// ServiceDesign_Planning Bounded Context - Tasks
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<ITaskCommandService, TaskCommandService>();
-builder.Services.AddScoped<ITaskQueryService, TaskQueryService>();
+// ServiceDesign_Planning Bounded Context
+builder.Services.AddScoped<IPlanningTaskRepository, PlanningTaskRepository>();
+builder.Services.AddScoped<IPlanningTaskCommandService, PlanningTaskCommandService>();
+builder.Services.AddScoped<IPlanningTaskQueryService, PlanningTaskQueryService>();
+
+builder.Services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
+builder.Services.AddScoped<IMaintenanceCommandService, MaintenanceCommandService>();
+builder.Services.AddScoped<IMaintenanceQueryService, MaintenanceQueryService>();
+
+builder.Services.AddScoped<IRequestInvoiceRepository, RequestInvoiceRepository>();
+builder.Services.AddScoped<IRequestInvoiceCommandService, RequestInvoiceCommandService>();
+builder.Services.AddScoped<IRequestInvoiceQueryService, RequestInvoiceQueryService>();
 
 // Analytics Bounded Context
 builder.Services.AddScoped<IMachineFailureCountRepository, MachineFailureCountRepository>();
@@ -117,8 +130,8 @@ builder.Services.AddScoped<IMachineFailureRateRepository, MachineFailureRateRepo
 builder.Services.AddScoped<IMachineFailureRateQueryService, FailureRateQueryService>();
 builder.Services.AddScoped<IFailureRateCommandService, FailureRateCommandService>();
 
-builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
-builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();
+/*builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
+builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();*/
 
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
@@ -132,6 +145,11 @@ builder.Services.AddScoped<IAssignUserQueryService, AssignUserQueryService>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
 builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
+
+//Subscription and Payments Bounded Context
+builder.Services.AddScoped<IPaymentCardRepository, PaymentCardRepository>();
+builder.Services.AddScoped<IPaymentCardCommandService, PaymentCardCommandService>();
+builder.Services.AddScoped<IPaymentCardQueryService, PaymentCardQueryService>();
 
 var app = builder.Build();
 
