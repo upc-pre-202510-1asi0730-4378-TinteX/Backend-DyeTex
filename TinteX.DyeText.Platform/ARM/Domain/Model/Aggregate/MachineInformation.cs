@@ -8,9 +8,13 @@ public class MachineInformation
     {
         Id = Guid.NewGuid();
         TimeSpent = string.Empty;
-        DayProgress = string.Empty;
-        FailureRate = string.Empty;
+        DayProgress = 0;
+        FailureRate = 0;
         AmountFailure = 0;
+        Temperature = 0;
+        Vibration = 0;
+        Energy = 0;
+        Speed = 0;
     }
 
     public MachineInformation(CreateMachineInformationCommand command)
@@ -45,9 +49,9 @@ public class MachineInformation
 
     public string TimeSpent { get; private set; }
     
-    public string DayProgress { get; private set; }
+    public double DayProgress { get; private set; }
     
-    public string FailureRate { get; private set; }
+    public double FailureRate { get; private set; }
     
     public double AmountFailure { get; private set; }
     

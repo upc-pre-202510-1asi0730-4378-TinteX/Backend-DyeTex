@@ -22,8 +22,8 @@ public static class ModelBuilderExtensions
         builder.Entity<MachineInformation>().HasKey(mi => mi.Id);
         builder.Entity<MachineInformation>().Property(mi => mi.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<MachineInformation>().Property(mi => mi.TimeSpent).IsRequired().HasMaxLength(30);
-        builder.Entity<MachineInformation>().Property(mi => mi.DayProgress).IsRequired().HasMaxLength(30);
-        builder.Entity<MachineInformation>().Property(mi => mi.FailureRate).IsRequired().HasMaxLength(30);
+        builder.Entity<MachineInformation>().Property(mi => mi.DayProgress).IsRequired();
+        builder.Entity<MachineInformation>().Property(mi => mi.FailureRate).IsRequired();
         builder.Entity<MachineInformation>().Property(mi => mi.AmountFailure).IsRequired();
         builder.Entity<MachineInformation>().Property(mi => mi.UserId).IsRequired();
         builder.Entity<MachineInformation>().Property(mi => mi.Temperature).IsRequired();
