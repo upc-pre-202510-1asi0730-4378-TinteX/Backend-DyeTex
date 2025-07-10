@@ -8,10 +8,11 @@ using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
 
 // ServiceDesign_Planning
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Services;
-using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Repositories;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Infrastructure.Persistance.EFC.Repositories;
 
 // Shared
 using TinteX.DyeText.Platform.Shared.Domain.Repositories;
@@ -103,10 +104,18 @@ builder.Services.AddScoped<IDeviceConfigurationRepository, DeviceConfigurationRe
 builder.Services.AddScoped<IDeviceConfigurationCommandService, DeviceConfigurationCommandService>();
 builder.Services.AddScoped<IDeviceConfigurationQueryService, DeviceConfigurationQueryService>();
 
-// ServiceDesign_Planning Bounded Context - Tasks
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<ITaskCommandService, TaskCommandService>();
-builder.Services.AddScoped<ITaskQueryService, TaskQueryService>();
+// ServiceDesign_Planning Bounded Context
+builder.Services.AddScoped<IPlanningTaskRepository, PlanningTaskRepository>();
+builder.Services.AddScoped<IPlanningTaskCommandService, PlanningTaskCommandService>();
+builder.Services.AddScoped<IPlanningTaskQueryService, PlanningTaskQueryService>();
+
+builder.Services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
+builder.Services.AddScoped<IMaintenanceCommandService, MaintenanceCommandService>();
+builder.Services.AddScoped<IMaintenanceQueryService, MaintenanceQueryService>();
+
+builder.Services.AddScoped<IRequestInvoiceRepository, RequestInvoiceRepository>();
+builder.Services.AddScoped<IRequestInvoiceCommandService, RequestInvoiceCommandService>();
+builder.Services.AddScoped<IRequestInvoiceQueryService, RequestInvoiceQueryService>();
 
 // Analytics Bounded Context
 builder.Services.AddScoped<IMachineFailureCountRepository, MachineFailureCountRepository>();
