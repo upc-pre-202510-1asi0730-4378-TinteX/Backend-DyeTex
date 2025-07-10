@@ -10,7 +10,7 @@ using TinteX.DyeText.Platform.Monitoring.Domain.Services;
 namespace TinteX.DyeText.Platform.Monitoring.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/monitoring/textiles-machine")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Notification Endpoints")]
 public class NotificationsController(
@@ -19,7 +19,7 @@ public class NotificationsController(
 {
     // Queries
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid}/notification")]
     [SwaggerOperation(
         Summary = "Get Notification by Id",
         Description = "Returns a Notification by its unique identifier.",
@@ -35,7 +35,7 @@ public class NotificationsController(
         return Ok(resource);
     }
 
-    [HttpGet]
+    [HttpGet("notification")]
     [SwaggerOperation(
         Summary = "Get All Notifications",
         Description = "Returns a list of all notifications in the system.",
@@ -51,7 +51,7 @@ public class NotificationsController(
 
     // Commands
 
-    [HttpPost]
+    [HttpPost("notification")]
     [SwaggerOperation(
         Summary = "Create Notification",
         Description = "Creates a new Notification in the system.",
@@ -68,7 +68,7 @@ public class NotificationsController(
         return CreatedAtAction(nameof(GetNotificationById), new { id = result.Id }, resourceResult);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}/notification")]
     [SwaggerOperation(
         Summary = "Update a notification",
         Description = "Updates an existing notification.",

@@ -1,0 +1,21 @@
+﻿using TinteX.DyeText.Platform.Profiles.Domain.Model.Commands;
+using TinteX.DyeText.Platform.Profiles.Interfaces.REST.Resources;
+
+namespace TinteX.DyeText.Platform.Profiles.Interfaces.REST.Transform;
+
+public static class UpdateAssignUserCommandFromResourceAssembler
+{
+    public static UpdateAssignUserCommand ToCommandFromResource(UpdateAssignUserResource resource)
+    {
+        return new UpdateAssignUserCommand(
+            resource.Id,
+            resource.Name,
+            resource.Email,
+            resource.Phone,
+            resource.StartDate,
+            resource.Plant,
+            resource.Role,
+            resource.Permission
+        );
+    }
+}

@@ -124,6 +124,10 @@ builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
 builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
 
+builder.Services.AddScoped<IAssignUserRepository, AssignUserRepository>();
+builder.Services.AddScoped<IAssignUserCommandService, AssignUserCommandService>();
+builder.Services.AddScoped<IAssignUserQueryService, AssignUserQueryService>();
+
 // Monitoring Bounded Context
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
