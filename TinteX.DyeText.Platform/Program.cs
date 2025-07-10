@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 // ARM
-using ServiceDesing.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
@@ -126,8 +125,8 @@ builder.Services.AddScoped<IMachineFailureRateRepository, MachineFailureRateRepo
 builder.Services.AddScoped<IMachineFailureRateQueryService, FailureRateQueryService>();
 builder.Services.AddScoped<IFailureRateCommandService, FailureRateCommandService>();
 
-builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
-builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();
+/*builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
+builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();*/
 
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();

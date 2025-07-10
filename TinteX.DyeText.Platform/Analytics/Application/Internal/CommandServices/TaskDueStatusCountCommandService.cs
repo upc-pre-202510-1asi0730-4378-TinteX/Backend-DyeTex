@@ -5,7 +5,7 @@ using TinteX.DyeText.Platform.Analytics.Domain.Services;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 
 namespace TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices
-{
+{/*
     public class TaskDueStatusCountCommandService : ITaskDueStatusCountCommandService
     {
         private readonly ITaskRepository _taskRepo;
@@ -33,5 +33,5 @@ namespace TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices
 
             await _analyticsRepo.UpsertAsync(agg);
         }
-    }
+    }*/
 }

@@ -1,4 +1,5 @@
-﻿using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Aggregates;
+﻿using Microsoft.EntityFrameworkCore;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Aggregates;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.valueObjects;
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Repositories;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
