@@ -1,3 +1,5 @@
+using Cortex.Mediator.Commands;
+using Cortex.Mediator.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -5,6 +7,8 @@ using Microsoft.OpenApi.Models;
 using TinteX.DyeText.Platform.ARM.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.ARM.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.ARM.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.ARM.Domain.Repositories;
+using TinteX.DyeText.Platform.ARM.Domain.Services;
 
 // ServiceDesign_Planning
 using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.CommandServices;
@@ -26,9 +30,21 @@ using TinteX.DyeText.Platform.Analytics.Infrastructure.Repositories;
 using TinteX.DyeText.Platform.Analytics.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices;
 
-// ARM
-using TinteX.DyeText.Platform.ARM.Domain.Repositories;
-using TinteX.DyeText.Platform.ARM.Domain.Services;
+// IAM
+using TinteX.DyeText.Platform.IAM.Application.Internal.CommandServices;
+using TinteX.DyeText.Platform.IAM.Application.Internal.OutboundServices;
+using TinteX.DyeText.Platform.IAM.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.IAM.Domain.Repositories;
+using TinteX.DyeText.Platform.IAM.Domain.Services;
+using TinteX.DyeText.Platform.IAM.Infrastructure.Hashing.BCrypt.Services;
+using TinteX.DyeText.Platform.IAM.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+using TinteX.DyeText.Platform.IAM.Infrastructure.Tokens.JWT.Configuration;
+using TinteX.DyeText.Platform.IAM.Infrastructure.Tokens.JWT.Services;
+using TinteX.DyeText.Platform.IAM.Interfaces.ACL;
+using TinteX.DyeText.Platform.IAM.Interfaces.ACL.Services;
+
+// Profiles
 using TinteX.DyeText.Platform.Profiles.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.Profiles.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Profiles.Domain.Repositories;
@@ -46,6 +62,7 @@ using TinteX.DyeText.Platform.SAP.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.SAP.Domain.Repository;
 using TinteX.DyeText.Platform.SAP.Domain.Services;
 using TinteX.DyeText.Platform.SAP.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.Shared.Infrastructure.Mediator.Cortex.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -174,17 +191,42 @@ builder.Services.AddScoped<IPaymentCardRepository, PaymentCardRepository>();
 builder.Services.AddScoped<IPaymentCardCommandService, PaymentCardCommandService>();
 builder.Services.AddScoped<IPaymentCardQueryService, PaymentCardQueryService>();
 
+builder.Services.Configure<TokenSettings>(builder.Configuration.GetSection("TokenSettings"));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserCommandService, UserCommandService>();
+builder.Services.AddScoped<IUserQueryService, UserQueryService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+// Add Mediator Injection Configuration
+builder.Services.AddScoped(typeof(ICommandPipelineBehavior<>), typeof(LoggingCommandBehavior<>));
+
+// Add Cortex Mediator for Event Handling
+builder.Services.AddCortexMediator(
+    configuration: builder.Configuration,
+    handlerAssemblyMarkerTypes: new[] { typeof(Program) }, configure: options =>
+    {
+        options.AddOpenCommandPipelineBehavior(typeof(LoggingCommandBehavior<>));
+    });
+
 var app = builder.Build();
 
 // Ensure DB Created / Migrations
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    context.Database.EnsureCreated();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseRequestAuthorization();
 app.UseHttpsRedirection();
 app.UseCors("AllowAllPolicy");
 app.UseAuthorization();

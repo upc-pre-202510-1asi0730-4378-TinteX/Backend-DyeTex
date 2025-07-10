@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration.Extensions;
 
+namespace TinteX.DyeText.Platform.Shared.Infrastructure.Interfaces.ASP.Configuration;
+
 public class KebabCaseRouteNamingConvention : IControllerModelConvention
 {
     private static AttributeRouteModel? ReplaceControllerTemplate(SelectorModel selector, string name)

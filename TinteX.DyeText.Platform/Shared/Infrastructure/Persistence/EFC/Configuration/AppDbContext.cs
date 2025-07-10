@@ -13,6 +13,7 @@ using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuratio
 
 // Analytics
 using TinteX.DyeText.Platform.Analytics.Domain.Model.Aggregates;
+using TinteX.DyeText.Platform.IAM.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 // Monitoring
 using TinteX.DyeText.Platform.Monitoring.Domain.Model.Aggregate;
@@ -58,6 +59,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.ApplyConfiguration(new RequestInvoiceConfiguration());
 
         builder.ApplyProfilesConfiguration();
+        
+        builder.ApplyIamConfiguration();
         
         builder.ApplyPaymentCardConfiguration();
 
