@@ -8,21 +8,21 @@ public class PaymentCard
     protected PaymentCard()
     {
         Id = Guid.NewGuid();
-        Card = new UserCard();
         UserName = string.Empty;
         Country = string.Empty;
+        Card = new UserCard();
     }
 
     public PaymentCard(CreatePaymentCardCommand command)
     {
+        UserName = command.UserName;
+        Country = command.Country;
         Card = new UserCard
         (
             command.ExpirationDate,
             command.NumberCard,
             command.CVV
         );
-        UserName = command.UserName;
-        Country = command.Country;
     }
 
     public Guid Id { get; set; }

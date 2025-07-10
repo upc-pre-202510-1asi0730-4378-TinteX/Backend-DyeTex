@@ -19,6 +19,7 @@ using TinteX.DyeText.Platform.Monitoring.Domain.Model.Aggregate;
 
 // Profiles
 using TinteX.DyeText.Platform.Profiles.Infrastructure.Persistence.EFC.Configuration.Extensions;
+using TinteX.DyeText.Platform.SAP.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
 namespace TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -57,6 +58,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.ApplyConfiguration(new RequestInvoiceConfiguration());
 
         builder.ApplyProfilesConfiguration();
+        
+        builder.ApplyPaymentCardConfiguration();
 
         // Analytics mappings
         builder.Entity<MachineFailureCount>(entity =>

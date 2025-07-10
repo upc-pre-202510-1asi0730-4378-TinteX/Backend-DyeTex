@@ -41,6 +41,11 @@ using TinteX.DyeText.Platform.Monitoring.Domain.Services;
 using TinteX.DyeText.Platform.Monitoring.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.Monitoring.Application.Internal.CommandServices;
 using TinteX.DyeText.Platform.Monitoring.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.SAP.Application.Internal.CommanServices;
+using TinteX.DyeText.Platform.SAP.Application.Internal.QueryServices;
+using TinteX.DyeText.Platform.SAP.Domain.Repository;
+using TinteX.DyeText.Platform.SAP.Domain.Services;
+using TinteX.DyeText.Platform.SAP.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -136,6 +141,11 @@ builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
 builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
+
+//Subscription and Payments Bounded Context
+builder.Services.AddScoped<IPaymentCardRepository, PaymentCardRepository>();
+builder.Services.AddScoped<IPaymentCardCommandService, PaymentCardCommandService>();
+builder.Services.AddScoped<IPaymentCardQueryService, PaymentCardQueryService>();
 
 var app = builder.Build();
 
