@@ -7,7 +7,7 @@ using TinteX.DyeText.Platform.Analytics.Domain.Services;
 namespace TinteX.DyeText.Platform.Analytics.Interfaces
 {
     [ApiController]
-    [Route("api/v1/Dashboard&Analytics/Machine")]
+    [Route("api/v1/Dashboard&Analytics/textiles-machine")]
     [SwaggerTag("Available Textile Machine Failure Rate Endpoints")]
     public class MachineFailureRateController : ControllerBase
     {

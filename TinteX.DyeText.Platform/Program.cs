@@ -232,9 +232,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAllPolicy");
 app.UseRequestAuthorization();
 app.UseHttpsRedirection();
-app.UseCors("AllowAllPolicy");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
