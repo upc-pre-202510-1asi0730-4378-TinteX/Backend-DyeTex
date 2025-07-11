@@ -124,13 +124,12 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// CORS Policy
+// Add CORS Policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllPolicy",
+    options.AddPolicy("AllowAllPolicy", 
         policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+            .AllowAnyMethod().AllowAnyHeader());
 });
 
 // Unit of Work
@@ -219,22 +218,22 @@ builder.Services.AddCortexMediator(
 
 var app = builder.Build();
 
-// Ensure DB Created / Migrations
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<AppDbContext>();
-    context.Database.EnsureCreated();
-}
-
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseRequestAuthorization();
-app.UseHttpsRedirection();
+
 app.UseCors("AllowAllPolicy");
+
+// Add Authorization Middleware to Pipeline
+app.UseRequestAuthorization();
+
+app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();

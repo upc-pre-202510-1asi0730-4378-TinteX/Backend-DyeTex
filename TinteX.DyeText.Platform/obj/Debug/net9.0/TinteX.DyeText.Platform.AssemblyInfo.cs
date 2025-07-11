@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TinteX.DyeText.Platform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d9e79d2ada0bc9c53b2d55293d7555d0a184c20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e48401bde239c956f69ef21ef0f6f9cb01685812")]
 [assembly: System.Reflection.AssemblyProductAttribute("TinteX.DyeText.Platform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TinteX.DyeText.Platform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
