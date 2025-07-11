@@ -10,7 +10,7 @@ using TinteX.DyeText.Platform.SAP.Interfaces.REST.Transform;
 namespace TinteX.DyeText.Platform.SAP.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/sap/[controller]")]
+[Route("api/v1/subscription/user/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Subscriptions and Payments Endpoints")]
 public class PaymentCardsController(
