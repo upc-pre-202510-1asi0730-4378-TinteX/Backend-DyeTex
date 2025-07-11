@@ -4,7 +4,7 @@ namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Domain.Model.Commands;
 
 public record CreateMaintenanceCommand(
     string Description,
-    DateTime ScheduledDate,
+    string ScheduledDate,
     Guid MachineId,
     string MachineName
     );
