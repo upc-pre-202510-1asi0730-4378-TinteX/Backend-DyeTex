@@ -2,5 +2,6 @@
 
 public record CreatePlanningTaskCommand(
     string Name,
-    string? Description
+    string? Description,
+    Guid TextileMachineId
     );

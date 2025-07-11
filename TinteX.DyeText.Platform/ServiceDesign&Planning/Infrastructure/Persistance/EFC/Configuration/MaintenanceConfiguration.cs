@@ -21,15 +21,10 @@ public class MaintenanceConfiguration : IEntityTypeConfiguration<Maintenance> {
         builder.Property(m => m.ScheduledDate)
             .IsRequired();
 
-        builder.OwnsOne(m => m.MachineId, mi =>
-        {
-            mi.Property(p => p.Value)
-                .HasColumnName("machine_id")
-                .IsRequired()
-                .HasMaxLength(100);
+        builder.Property(m => m.MachineId)
+            .HasColumnName("machine_id")
+            .IsRequired();
 
-            mi.WithOwner();
-        });
 
         builder.Property(m => m.Status)
             .HasConversion<string>()

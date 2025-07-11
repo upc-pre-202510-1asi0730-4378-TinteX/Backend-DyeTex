@@ -5,12 +5,14 @@ namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST.Transfo
 
 public static class PlanningTaskResourceFromEntityAssembler
 {
-    public static PlanningTaskResource ToResourceFromEntity(PlanningTask entity)
+    public static PlanningTaskResource ToResourceFromEntity(PlanningTask entity, string machineName)
     {
         return new PlanningTaskResource(
             Id: entity.Id.Value,
             Name: entity.Name,
-            Description: entity.Description
+            Description: entity.Description,
+            TextileMachineId: entity.TextileMachineId,
+            TextileMachineName: machineName
         );
     }
 }

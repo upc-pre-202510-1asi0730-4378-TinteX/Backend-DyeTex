@@ -10,14 +10,14 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST.Transform;
 namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/designandplanning/request-invoices")]
+[Route("api/v1/designandplanning/textiles-machine/request-invoices")]
 [Produces("application/json")]
-public class RequestInvoiceController : ControllerBase
+public class RequestInvoicesController : ControllerBase
 {
     private readonly IRequestInvoiceCommandService _commandService;
     private readonly IRequestInvoiceQueryService _queryService;
 
-    public RequestInvoiceController(
+    public RequestInvoicesController(
         IRequestInvoiceCommandService commandService,
         IRequestInvoiceQueryService queryService)
     {

@@ -39,6 +39,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<PlanningTask> PlanningTasks { get; set; }
     public DbSet<Maintenance> Maintenances { get; set; }
     public DbSet<RequestInvoice> RequestInvoices { get; set; }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         // Add the created and updated interceptor

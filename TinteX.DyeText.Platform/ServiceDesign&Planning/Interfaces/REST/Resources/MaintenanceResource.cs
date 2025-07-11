@@ -5,5 +5,6 @@ public record MaintenanceResource(
         string Description,
         DateTime ScheduledDate,
         string MachineId,
+        string MachineName,
         string Status
     );

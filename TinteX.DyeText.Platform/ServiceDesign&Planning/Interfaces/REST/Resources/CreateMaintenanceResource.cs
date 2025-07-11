@@ -3,5 +3,5 @@
 public record CreateMaintenanceResource(
     string Description,
     DateTime ScheduledDate,
-    string MachineId
-    );
+    Guid MachineId
+);

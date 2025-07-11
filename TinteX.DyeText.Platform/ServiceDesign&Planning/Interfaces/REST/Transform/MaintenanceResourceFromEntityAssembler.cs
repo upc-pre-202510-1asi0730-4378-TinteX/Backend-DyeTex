@@ -5,13 +5,14 @@ namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST.Transfo
 
 public static class MaintenanceResourceFromEntityAssembler
 {
-    public static MaintenanceResource ToResourceFromEntity(Maintenance entity)
+    public static MaintenanceResource ToResourceFromEntity(Maintenance entity, string machineName)
     {
         return new MaintenanceResource(
             Id: entity.Id.Value,
             Description: entity.Description,
             ScheduledDate: entity.ScheduledDate,
-            MachineId: entity.MachineId.Value.ToString(),
+            MachineId: entity.MachineId.ToString(),
+            MachineName: machineName,
             Status: entity.Status.ToString()
         );
     }

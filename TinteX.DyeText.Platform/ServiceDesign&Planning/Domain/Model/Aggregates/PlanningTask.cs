@@ -7,6 +7,7 @@ public partial class PlanningTask  {
     public TaskId Id { get; private set; }
     public string Name { get; private set; }
     public string? Description { get; private set; }
+    public Guid TextileMachineId { get; private set; }
 
     public PlanningTask(string name, string? description = null)
     {
@@ -20,12 +21,10 @@ public partial class PlanningTask  {
         Id = TaskId.NewId();
         Name = command.Name;
         Description = command.Description;
+        TextileMachineId = command.TextileMachineId;
     }
 
-    public void Rename(string newName)
-    {
-        Name = newName;
-    }
+    public void Rename(string newName) { Name = newName; }
 
     protected PlanningTask() { }
 }

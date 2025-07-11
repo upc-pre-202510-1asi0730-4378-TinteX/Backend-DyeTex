@@ -10,14 +10,14 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST.Transform;
 namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/designandplanning/tasks")]
+[Route("api/v1/designandplanning/textiles-machine/tasks")]
 [Produces("application/json")]
-public class PlanningTaskController : ControllerBase
+public class PlanningTasksController : ControllerBase
 {
     private readonly IPlanningTaskCommandService _commandService;
     private readonly IPlanningTaskQueryService _queryService;
 
-    public PlanningTaskController(
+    public PlanningTasksController(
         IPlanningTaskCommandService commandService,
         IPlanningTaskQueryService queryService)
     {
@@ -28,13 +28,12 @@ public class PlanningTaskController : ControllerBase
     [HttpGet]
     [SwaggerOperation(
         Summary = "List all planning tasks",
-        Description = "Returns a list of all planning tasks registered in the system."
+        Description = "Returns a list of all planning tasks registered in the system, including machine name."
     )]
     [SwaggerResponse(200, "List of tasks successfully retrieved", typeof(IEnumerable<PlanningTaskResource>))]
     public async Task<IActionResult> GetAll()
     {
-        var tasks = await _queryService.Handle();
-        var resources = tasks.Select(PlanningTaskResourceFromEntityAssembler.ToResourceFromEntity);
+        var resources = await _queryService.GetAllResourcesAsync();
         return Ok(resources);
     }
 
@@ -58,16 +57,14 @@ public class PlanningTaskController : ControllerBase
     [HttpGet("{id:guid}")]
     [SwaggerOperation(
         Summary = "Get a planning task by ID",
-        Description = "Returns a planning task based on the provided ID."
+        Description = "Returns a planning task based on the provided ID, including machine name."
     )]
     [SwaggerResponse(200, "Task found", typeof(PlanningTaskResource))]
     [SwaggerResponse(404, "Task not found")]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
-        var query = new GetTaskByIdQuery(new TaskId(id));
-        var task = await _queryService.Handle(query);
-        if (task == null) return NotFound();
-        var resource = PlanningTaskResourceFromEntityAssembler.ToResourceFromEntity(task);
+        var resource = await _queryService.Handle(new GetTaskByIdQuery(new TaskId(id)));
+        if (resource == null) return NotFound();
         return Ok(resource);
     }
 
@@ -87,7 +84,7 @@ public class PlanningTaskController : ControllerBase
         await _commandService.Handle(command);
         return NoContent();
     }
-    
+
     [HttpDelete("{id:guid}")]
     [SwaggerOperation(
         Summary = "Delete a planning task",

@@ -7,23 +7,36 @@ using TinteX.DyeText.Platform.Shared.Domain.Repositories;
 
 namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.CommandServices;
 
-public class PlanningTaskCommandService : IPlanningTaskCommandService {
+public class PlanningTaskCommandService : IPlanningTaskCommandService
+{
     private readonly IPlanningTaskRepository _taskRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IArmContextFacade _armContext;
 
-    public PlanningTaskCommandService(IPlanningTaskRepository taskRepository, IUnitOfWork unitOfWork) {
+    public PlanningTaskCommandService(
+        IPlanningTaskRepository taskRepository,
+        IUnitOfWork unitOfWork,
+        IArmContextFacade armContext)
+    {
         _taskRepository = taskRepository;
         _unitOfWork = unitOfWork;
+        _armContext = armContext;
     }
 
-    public async Task<TaskId> Handle(CreatePlanningTaskCommand command) {
+    public async Task<TaskId> Handle(CreatePlanningTaskCommand command)
+    {
+        var machineName = await _armContext.GetTextileMachineNameByIdAsync(command.TextileMachineId);
+
+        Console.WriteLine($"[INFO] Creating task for machine: {machineName}");
+
         var task = new PlanningTask(command);
         await _taskRepository.AddAsync(task);
         await _unitOfWork.CompleteAsync();
         return task.Id;
     }
 
-    public async Task Handle(UpdateTaskNameCommand command) {
+    public async Task Handle(UpdateTaskNameCommand command)
+    {
         var task = await _taskRepository.GetByIdAsync(command.TaskId);
         if (task is null) return;
 
@@ -31,8 +44,9 @@ public class PlanningTaskCommandService : IPlanningTaskCommandService {
         _taskRepository.Update(task);
         await _unitOfWork.CompleteAsync();
     }
-    
-    public async Task Handle(DeleteTaskCommand command) {
+
+    public async Task Handle(DeleteTaskCommand command)
+    {
         var task = await _taskRepository.GetByIdAsync(command.TaskId);
         if (task == null)
             throw new ArgumentException($"Task with ID {command.TaskId.Value} does not exist");

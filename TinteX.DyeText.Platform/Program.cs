@@ -62,6 +62,7 @@ using TinteX.DyeText.Platform.SAP.Application.Internal.QueryServices;
 using TinteX.DyeText.Platform.SAP.Domain.Repository;
 using TinteX.DyeText.Platform.SAP.Domain.Services;
 using TinteX.DyeText.Platform.SAP.Infrastructure.Persistence.EFC.Repositories;
+using TinteX.DyeText.Platform.ServiceDesign_Planning.Application.Internal.AclServices;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Mediator.Cortex.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -161,6 +162,9 @@ builder.Services.AddScoped<IRequestInvoiceRepository, RequestInvoiceRepository>(
 builder.Services.AddScoped<IRequestInvoiceCommandService, RequestInvoiceCommandService>();
 builder.Services.AddScoped<IRequestInvoiceQueryService, RequestInvoiceQueryService>();
 
+// ACL SDP to ARM
+builder.Services.AddScoped<IArmContextFacade, ArmContextFacade>();
+
 // Analytics Bounded Context
 builder.Services.AddScoped<IMachineFailureCountRepository, MachineFailureCountRepository>();
 builder.Services.AddScoped<IFailureCountCommandService, FailuresCountCommandService>();
@@ -169,6 +173,8 @@ builder.Services.AddScoped<IMachinesFailureCountQueryService, FailuresCountQuery
 builder.Services.AddScoped<IMachineFailureRateRepository, MachineFailureRateRepository>();
 builder.Services.AddScoped<IMachineFailureRateQueryService, FailureRateQueryService>();
 builder.Services.AddScoped<IFailureRateCommandService, FailureRateCommandService>();
+
+
 
 /*builder.Services.AddScoped<ITaskDueStatusCountRepository, TaskDueStatusCountRepository>();
 builder.Services.AddScoped<ITaskDueStatusCountCommandService, TaskDueStatusCountCommandService>();*/

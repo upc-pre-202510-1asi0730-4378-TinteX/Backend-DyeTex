@@ -9,7 +9,8 @@ public static class CreatePlanningTaskCommandFromResourceAssembler
     {
         return new CreatePlanningTaskCommand(
             resource.Name,
-            resource.Description
+            resource.Description,
+            resource.TextileMachineId
         );
     }
 }

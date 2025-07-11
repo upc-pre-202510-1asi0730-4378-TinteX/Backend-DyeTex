@@ -9,13 +9,14 @@ using TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST.Transform;
 namespace TinteX.DyeText.Platform.ServiceDesign_Planning.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/designandplanning/maintenances")]
-public class MaintenanceController : ControllerBase
+[Route("api/v1/designandplanning/textiles-machine/maintenances")]
+[Produces("application/json")]
+public class MaintenancesController : ControllerBase
 {
     private readonly IMaintenanceCommandService _commandService;
     private readonly IMaintenanceQueryService _queryService;
 
-    public MaintenanceController(
+    public MaintenancesController(
         IMaintenanceCommandService commandService,
         IMaintenanceQueryService queryService)
     {
@@ -26,32 +27,28 @@ public class MaintenanceController : ControllerBase
     [HttpGet]
     [SwaggerOperation(
         Summary = "List all maintenances",
-        Description = "Returns a complete list of scheduled maintenances, including description, date, and status."
+        Description = "Returns a complete list of scheduled maintenances, including machine name and status."
     )]
     [SwaggerResponse(200, "List of maintenances retrieved successfully", typeof(IEnumerable<MaintenanceResource>))]
     public async Task<IActionResult> GetAll()
     {
-        var maintenances = await _queryService.GetAllAsync();
-        var resources = maintenances.Select(MaintenanceResourceFromEntityAssembler.ToResourceFromEntity);
+        var resources = await _queryService.GetAllResourcesAsync();
         return Ok(resources);
     }
 
     [HttpGet("{id:guid}")]
     [SwaggerOperation(
         Summary = "Get maintenance by ID",
-        Description = "Returns a specific maintenance by its unique identifier."
+        Description = "Returns a specific maintenance by its unique identifier, enriched with machine name."
     )]
     [SwaggerResponse(200, "Maintenance found", typeof(MaintenanceResource))]
     [SwaggerResponse(404, "Maintenance with specified ID not found")]
     public async Task<ActionResult<MaintenanceResource>> GetById([FromRoute] Guid id)
     {
-        var maintenanceId = new MaintenanceId(id);
-        var maintenance = await _queryService.GetByIdAsync(maintenanceId);
-
-        if (maintenance == null)
+        var resource = await _queryService.GetResourceByIdAsync(new MaintenanceId(id));
+        if (resource == null)
             return NotFound($"No maintenance found with ID: {id}");
 
-        var resource = MaintenanceResourceFromEntityAssembler.ToResourceFromEntity(maintenance);
         return Ok(resource);
     }
 
@@ -62,13 +59,16 @@ public class MaintenanceController : ControllerBase
     )]
     [SwaggerResponse(201, "Maintenance successfully created")]
     [SwaggerResponse(400, "Invalid data for maintenance creation")]
-    public async Task<IActionResult> Create([FromBody] CreateMaintenanceResource resource) {
-        try {
+    public async Task<IActionResult> Create([FromBody] CreateMaintenanceResource resource)
+    {
+        try
+        {
             var command = CreateMaintenanceCommandFromResourceAssembler.ToCommandFromResource(resource);
             var maintenanceId = await _commandService.Handle(command);
             return CreatedAtAction(nameof(GetById), new { id = maintenanceId.Value }, new { id = maintenanceId.Value });
         }
-        catch (FormatException ex) {
+        catch (FormatException ex)
+        {
             return BadRequest(new { message = ex.Message });
         }
     }
@@ -86,7 +86,7 @@ public class MaintenanceController : ControllerBase
         await _commandService.Handle(command);
         return NoContent();
     }
-    
+
     [HttpDelete("{id:guid}")]
     [SwaggerOperation(
         Summary = "Delete a maintenance",
@@ -100,5 +100,4 @@ public class MaintenanceController : ControllerBase
         await _commandService.Handle(command);
         return NoContent();
     }
-
 }

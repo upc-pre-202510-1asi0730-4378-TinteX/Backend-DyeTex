@@ -3,5 +3,7 @@
 public record PlanningTaskResource(
     Guid Id,
     string Name,
-    string? Description
+    string? Description,
+    Guid TextileMachineId,
+    string TextileMachineName
     );

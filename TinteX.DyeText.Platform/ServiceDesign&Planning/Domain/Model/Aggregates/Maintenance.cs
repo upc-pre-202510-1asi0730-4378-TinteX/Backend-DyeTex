@@ -7,10 +7,10 @@ public partial class Maintenance {
     public MaintenanceId Id { get; private set; }
     public string Description { get; private set; }
     public DateTime ScheduledDate { get; private set; }
-    public MachineId MachineId { get; private set; }
+    public Guid MachineId { get; private set; }
     public ETaskStatus Status { get; private set; }
 
-    public Maintenance(string description, DateTime scheduledDate, MachineId machineId)
+    public Maintenance(string description, DateTime scheduledDate, Guid machineId)
     {
         if (string.IsNullOrWhiteSpace(description))
             throw new ArgumentException("Description cannot be null or empty.", nameof(description));
@@ -18,7 +18,7 @@ public partial class Maintenance {
         if (scheduledDate.Date < DateTime.UtcNow.Date)
             throw new ArgumentException("Scheduled date cannot be in the past.", nameof(scheduledDate));
         
-        MachineId = machineId ?? throw new ArgumentNullException(nameof(machineId));
+        MachineId = machineId;
 
         Id = MaintenanceId.NewId();
         Description = description;
@@ -34,7 +34,7 @@ public partial class Maintenance {
         if (command.ScheduledDate.Date < DateTime.UtcNow.Date)
             throw new ArgumentException("Scheduled date cannot be in the past.", nameof(command.ScheduledDate));
         
-        MachineId = command.MachineId ?? throw new ArgumentNullException(nameof(command.MachineId));
+        MachineId = command.MachineId;
 
         Id = MaintenanceId.NewId();
         Description = command.Description;
