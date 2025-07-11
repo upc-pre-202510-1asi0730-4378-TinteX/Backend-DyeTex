@@ -4,13 +4,13 @@ using Swashbuckle.AspNetCore.Annotations;
 using TinteX.DyeText.Platform.ARM.Domain.Model.Queries;
 using TinteX.DyeText.Platform.ARM.Interfaces.REST.Resources;
 using TinteX.DyeText.Platform.ARM.Interfaces.REST.Transform;
-using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+using TinteX.DyeText.Platform.ARM.Domain.Services;
 
 namespace TinteX.DyeText.Platform.ARM.Interfaces.REST;
 
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/assets/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Textile Machine Endpoints")]
 public class TextileMachinesController(

@@ -9,20 +9,27 @@ namespace TinteX.DyeText.Platform.Profiles.Application.ACL;
 /// <summary>
 /// Facade for the profiles context 
 /// </summary>
-/// <param name="profileCommandService">
-/// The profile command service
-/// </param>
-/// <param name="profileQueryService">
-/// The profile query service
-/// </param>
 public class ProfilesContextFacade(
     IProfileCommandService profileCommandService,
     IProfileQueryService profileQueryService
 ) : IProfilesContextFacade
 {
-    public async Task<int> CreateProfile(string firstName, string lastName, string email)
+    public async Task<int> CreateProfile(
+        string firstName,
+        string lastName,
+        string email,
+        string phone,
+        bool membershipActive,
+        string theme)
     {
-        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email);
+        var createProfileCommand = new CreateProfileCommand(
+            firstName,
+            lastName,
+            email,
+            phone,
+            membershipActive,
+            theme
+        );
         var profile = await profileCommandService.Handle(createProfileCommand);
         return profile?.Id ?? 0;
     }

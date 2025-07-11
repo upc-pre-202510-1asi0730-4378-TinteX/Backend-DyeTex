@@ -379,3 +379,9 @@ C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\
 C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\net9.0\TinteX.DyeText.Platform.pdb
 C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\net9.0\TinteX.DyeText.Platform.genruntimeconfig.cache
 C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\obj\Debug\net9.0\ref\TinteX.DyeText.Platform.dll
+C:\Users\JHector\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\appsettings.Production.json
+C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\Cortex.Mediator.dll
+C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\USER\Documents\GitHub\Backend-DyeTex\TinteX.DyeText.Platform\bin\Debug\net9.0\Scrutor.dll

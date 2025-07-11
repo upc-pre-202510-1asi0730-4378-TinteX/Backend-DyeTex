@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TinteX.DyeText.Platform.ARM.Domain.Model.Entities;
-using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
+using TinteX.DyeText.Platform.ARM.Domain.Repositories;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Configuration;
 using TinteX.DyeText.Platform.Shared.Infrastructure.Persistence.EFC.Repositories;
 

@@ -17,8 +17,13 @@ public static class ProfileResourceFromEntityAssembler
     /// <returns>
     /// <see cref="ProfileResource"/> converted from <see cref="Profile"/> entity
     /// </returns>
-    public static ProfileResource ToResourceFromEntity(Profile entity)
-    {
-        return new ProfileResource(entity.Id, entity.FullName, entity.EmailAddress);
-    }
+    public static ProfileResource ToResourceFromEntity(Profile e)
+        => new(
+            e.Id,
+            e.FullName,
+            e.EmailAddress,
+            e.Phone,
+            e.MembershipActive,
+            e.Theme
+        );
 }

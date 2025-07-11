@@ -11,6 +11,11 @@ public static class MachineInformationResourceFromEntityAssembler
             entity.TimeSpent,
             entity.DayProgress,
             entity.FailureRate,
-            entity.AmountFailure
+            entity.AmountFailure,
+            entity.UserId,
+            entity.Temperature,
+            entity.Vibration,
+            entity.Energy,
+            entity.Speed
         );
 }

@@ -7,7 +7,7 @@ using TinteX.DyeText.Platform.Analytics.Domain.Repositories;
 namespace TinteX.DyeText.Platform.Analytics.Interfaces.REST
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/Dashboard&Analytics/Task/Due-Status")]
     [SwaggerTag("Available Textile Machine Tasks Status Endpoints")]
     public class TaskDueStatusController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace TinteX.DyeText.Platform.Analytics.Interfaces.REST
             _repository = repository;
         }
 
-        [HttpPost("refresh")]
+        [HttpPost]
         [SwaggerOperation(
             Summary = "Refresh TextileMachine by Id",
             Description = "Refresh a TextileMachine by its unique identifier.",

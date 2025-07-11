@@ -39,9 +39,9 @@ namespace TinteX.DyeText.Platform.Analytics.Application.Internal.CommandServices
                 decimal rateDecimal = 0;
 
                 // Validación segura del FailureRate (en caso sea un string como "20%")
-                if (!string.IsNullOrWhiteSpace(item.FailureRate))
+                if (!string.IsNullOrWhiteSpace(item.FailureRate.ToString()))
                 {
-                    string normalized = item.FailureRate.Replace("%", "").Trim();
+                    string normalized = item.FailureRate.ToString().Replace("%", "").Trim();
                     if (decimal.TryParse(normalized, out decimal parsed))
                     {
                         rateDecimal = parsed / 100;

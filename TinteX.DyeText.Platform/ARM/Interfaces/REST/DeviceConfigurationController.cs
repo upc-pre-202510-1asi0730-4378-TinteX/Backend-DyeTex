@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TinteX.DyeText.Platform.ARM.Domain.Model.Commands;
-using TinteX.DyeText.Platform.Monitoring.Domain.Repositories;
-using TinteX.DyeText.Platform.Monitoring.Domain.Services;
+using TinteX.DyeText.Platform.ARM.Domain.Repositories;
+using TinteX.DyeText.Platform.ARM.Domain.Services;
 
 namespace TinteX.DyeText.Platform.ARM.Interfaces.REST;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/assets/textile-machines/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Device Configuration Endpoints")]
 public class DeviceConfigurationController : ControllerBase
