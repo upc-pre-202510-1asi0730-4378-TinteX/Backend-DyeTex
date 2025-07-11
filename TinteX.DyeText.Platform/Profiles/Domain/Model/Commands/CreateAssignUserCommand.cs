@@ -5,7 +5,7 @@ public record CreateAssignUserCommand(
     string Name,
     string Email,
     string Phone,
-    DateTime StartDate,
+    string StartDate,
     string Plant,
     string Role,
     string Permission

@@ -9,7 +9,7 @@ public class AssignUser
     public string Name { get; private set; }
     public string Email { get; private set; }
     public string Phone { get; private set; }
-    public DateTime StartDate { get; private set; }
+    public string StartDate { get; private set; }
     public string Plant { get; private set; }
     public string Role { get; private set; }
     public string Permission { get; private set; }
