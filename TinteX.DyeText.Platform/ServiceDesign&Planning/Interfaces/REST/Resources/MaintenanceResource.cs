@@ -3,7 +3,7 @@
 public record MaintenanceResource(
         Guid Id,
         string Description,
-        DateTime ScheduledDate,
+        string ScheduledDate,
         string MachineId,
         string MachineName,
         string Status
