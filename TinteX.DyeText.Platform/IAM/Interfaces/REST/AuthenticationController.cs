@@ -11,7 +11,7 @@ namespace TinteX.DyeText.Platform.IAM.Interfaces.REST;
 
 [Authorize]
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/iam/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 [SwaggerTag("Available Authentication endpoints")]
 public class AuthenticationController(IUserCommandService userCommandService) : ControllerBase
